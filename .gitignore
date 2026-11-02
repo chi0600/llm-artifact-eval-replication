@@ -1,0 +1,19 @@
+# Never commit restricted workshop or industrial materials
+workshop/raw/
+workshop/anonymized/
+workshop/coding/coded-excerpts/
+workshop/coding/human-review/
+workshop/traceability/
+industrial/
+3gpp/
+**/*private*
+**/*confidential*
+# Credentials / local files
+.env
+.env.*
+.hf_token
+*.pem
+*.key
+__pycache__/
+.pytest_cache/
+.DS_Store
