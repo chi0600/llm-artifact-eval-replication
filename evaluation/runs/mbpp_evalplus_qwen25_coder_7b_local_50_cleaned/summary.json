@@ -1,0 +1,42 @@
+{
+  "artifacts": 50,
+  "base_oracle_reached_count": 50,
+  "base_pass_count": 43,
+  "base_pass_rate": 0.86,
+  "base_pass_rate_all_tasks": 0.86,
+  "base_pass_rate_reached_tasks": 0.86,
+  "dataset": "MbppPlus",
+  "dataset_hash": "ee43ecabebf20deef4bb776a405ac5b1",
+  "dataset_version": "v0.2.0",
+  "failed_gate_counts": {
+    "base_oracle": 7,
+    "extended_oracle": 7
+  },
+  "failure_cause_counts": {
+    "base_oracle_failure": 7,
+    "extended_oracle_failure": 7
+  },
+  "failure_stage_counts": {
+    "base_oracle": 7,
+    "extended_oracle": 7
+  },
+  "model": "qwen2.5-coder:7b-instruct",
+  "outcome_counts": {
+    "Accepted": 36,
+    "Conditional": 7,
+    "Rejected before oracle": 0,
+    "Rejected by base oracle": 7,
+    "Rejected during execution": 0
+  },
+  "outcome_rates": {
+    "Accepted": 0.72,
+    "Conditional": 0.14,
+    "Rejected before oracle": 0.0,
+    "Rejected by base oracle": 0.14,
+    "Rejected during execution": 0.0
+  },
+  "provider": "ollama_openai",
+  "run_id": "mbpp_evalplus_qwen25_coder_7b_local_50_cleaned",
+  "strict_mbpp_plus_pass_count": 36,
+  "strict_mbpp_plus_pass_rate": 0.72
+}
