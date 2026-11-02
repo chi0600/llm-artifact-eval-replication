@@ -1,0 +1,52 @@
+{
+  "run_id": "mbpp_evalplus_smoke",
+  "artifact_spec": "evaluation/specs/mbpp-python-code-artifact-spec.json",
+  "dataset": {
+    "path": "evaluation/datasets/mbpp_evalplus_smoke_manifest.jsonl",
+    "format": "jsonl",
+    "source": "fixture",
+    "name": "FixturePlus",
+    "version": "v0.0.0",
+    "hash": "fixture",
+    "selection_seed": 42,
+    "sample_size": 5
+  },
+  "model": {
+    "provider": "fixture",
+    "name": "fixture-completions",
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 1,
+    "seed": 42
+  },
+  "generation": {
+    "samples_path": "evaluation/datasets/mbpp_evalplus_smoke_samples.jsonl",
+    "prompt_style": "fixture",
+    "reuse_existing_samples": true
+  },
+  "execution": {
+    "parallel": 1,
+    "test_details": true,
+    "min_time_limit": 1.0,
+    "gt_time_limit_factor": 1.0,
+    "execution_probe_timeout_seconds": 3
+  },
+  "output": {
+    "output_root": "evaluation/runs",
+    "report_dir": "evaluation/reports"
+  },
+  "gates_enabled": [
+    "response_capture",
+    "code_extraction",
+    "syntax_validation",
+    "entry_point_validation",
+    "execution_probe",
+    "base_oracle",
+    "extended_oracle",
+    "decision_classification"
+  ],
+  "aggregation_policy": {
+    "decision_rule": "all_blocking_pass_and_min_score",
+    "min_score": 1.0
+  }
+}
