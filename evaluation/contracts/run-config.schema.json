@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/run-config.schema.json",
+  "title": "Evaluation Run Configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_spec",
+    "dataset",
+    "model",
+    "gates_enabled",
+    "aggregation_policy"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]+$"
+    },
+    "artifact_spec": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "format"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "format": {
+          "type": "string",
+          "enum": ["jsonl", "json", "csv"]
+        },
+        "source": {
+          "type": "string",
+          "enum": ["evalplus", "fixture"]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hash": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selection_seed": {
+          "type": "integer"
+        },
+        "sample_size": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "name", "temperature", "max_tokens"],
+      "properties": {
+        "provider": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "temperature": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "max_tokens": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "base_url": {
+          "type": "string",
+          "minLength": 1
+        },
+        "api_key_env": {
+          "type": "string",
+          "minLength": 1
+        },
+        "api_key_file": {
+          "type": "string",
+          "minLength": 1
+        },
+        "top_p": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "seed": {
+          "type": "integer"
+        }
+      }
+    },
+    "gates_enabled": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "aggregation_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision_rule", "min_score"],
+      "properties": {
+        "decision_rule": {
+          "type": "string",
+          "enum": [
+            "all_blocking_pass_and_min_score",
+            "min_score_only"
+          ]
+        },
+        "min_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "generation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "samples_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "prompt_style": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reuse_existing_samples": {
+          "type": "boolean"
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "parallel": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "test_details": {
+          "type": "boolean"
+        },
+        "min_time_limit": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "gt_time_limit_factor": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "execution_probe_timeout_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "evalplus_max_memory_bytes": {
+          "type": "integer"
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "output_root": {
+          "type": "string",
+          "minLength": 1
+        },
+        "report_dir": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}
