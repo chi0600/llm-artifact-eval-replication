@@ -1,0 +1,55 @@
+{
+  "run_id": "mbpp_evalplus_qwen3_coder_50_cleaned",
+  "artifact_spec": "evaluation/specs/mbpp-python-code-artifact-spec.json",
+  "dataset": {
+    "path": "evaluation/datasets/mbpp_evalplus_50_manifest.jsonl",
+    "format": "jsonl",
+    "source": "evalplus",
+    "name": "MbppPlus",
+    "version": "v0.2.0",
+    "hash": "ee43ecabebf20deef4bb776a405ac5b1",
+    "selection_seed": 42,
+    "sample_size": 50
+  },
+  "model": {
+    "provider": "huggingface_router_openai",
+    "name": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+    "base_url": "https://router.huggingface.co/v1",
+    "api_key_env": "HF_TOKEN",
+    "api_key_file": ".hf_token",
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 1024,
+    "seed": 42
+  },
+  "generation": {
+    "prompt_style": "code_only",
+    "reuse_existing_samples": true
+  },
+  "execution": {
+    "parallel": 1,
+    "test_details": true,
+    "min_time_limit": 1.0,
+    "gt_time_limit_factor": 4.0,
+    "execution_probe_timeout_seconds": 5,
+    "evalplus_max_memory_bytes": -1
+  },
+  "output": {
+    "output_root": "evaluation/runs",
+    "report_dir": "evaluation/reports"
+  },
+  "gates_enabled": [
+    "response_capture",
+    "code_extraction",
+    "syntax_validation",
+    "entry_point_validation",
+    "execution_probe",
+    "base_oracle",
+    "extended_oracle",
+    "decision_classification"
+  ],
+  "aggregation_policy": {
+    "decision_rule": "all_blocking_pass_and_min_score",
+    "min_score": 1.0
+  }
+}
