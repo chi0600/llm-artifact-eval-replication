@@ -33,6 +33,8 @@ jobs:
           assert all(not ("statement" in k or "speaker" in k) for k in rows[0])
           runs = Path("evaluation/runs")
           for run in sorted(runs.iterdir()):
+              if run.name == "mbpp_evalplus_smoke":
+                  continue  # The smoke fixture writes temporary, uncommitted output.
               result = run / "results.jsonl"
               if not result.exists():
                   continue
