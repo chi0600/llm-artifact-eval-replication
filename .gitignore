@@ -17,3 +17,7 @@ industrial/
 __pycache__/
 .pytest_cache/
 .DS_Store
+
+# Generated smoke fixture output may contain environment-specific absolute paths
+evaluation/runs/mbpp_evalplus_smoke/
+evaluation/reports/mbpp_evalplus_smoke-summary.md
