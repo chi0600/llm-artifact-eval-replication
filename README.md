@@ -10,7 +10,7 @@ The original research repository remains private. This repository was created **
 - `evaluation/specs/`, `evaluation/contracts/`, `evaluation/configs/`: evaluation specifications and configurations.
 - `evaluation/datasets/`: reproducible selection manifest for 50 public MBPP+ tasks and a self-contained smoke fixture.
 - `evaluation/runs/`: saved public-benchmark model outputs, sanitized evaluation records and aggregate summaries.
-- `workshop/codebook/`: **initial 30-code** descriptive codebook with example statement identifiers omitted. **Not** the final 41-code human-reviewed dataset.
+- `workshop/codebook/`: publication-safe definitions for all **41 human-reviewed descriptive codes**, without statement IDs or participant metadata (original inclusion/exclusion rules are available for the first 30 only).
 - `DATA_AVAILABILITY.md`: what can and cannot be reproduced from the shared material.
 
 The MBPP/EvalPlus example demonstrates how existing executable tests can be organized with validity checks, decision outcomes and records. It is **not** evidence that the framework improves test accuracy or operational efficiency.
