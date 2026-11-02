@@ -6,7 +6,7 @@ This public repository is a curated replication subset; the original research re
 - Source code, evaluation specifications, contracts and run configurations for the public MBPP/EvalPlus instantiation.
 - A fixed 50-task selection manifest for the publicly available `MbppPlus` dataset.
 - Saved model completions for Qwen3-Coder and locally run Qwen2.5-Coder-7B, aggregate summaries, and path-sanitized evaluation records.
-- A provisional **initial 30-code** workshop codebook from the original analysis preparation, without segment/example IDs. This does not represent the final 41-code human-reviewed coding.
+- Redacted definitions for all **41 descriptive codes** in the human-reviewed summary. The original inclusion/exclusion rules are retained for the first 30 codes; the 11 codes added during human review have no formal rules in the source summary. Counts, speaker/context coverage and segment IDs are removed.
 
 ## Not shared
 - Original workshop transcripts, organizer notes, speaker information, detailed statement-level evidence, and completed human coding review workbooks. Pseudonymization alone cannot guarantee that individuals or companies are unidentifiable.
