@@ -1,0 +1,5 @@
+{"task_id":"Fixture/accepted","raw_response":"```python\ndef add_one(x):\n    return x + 1\n```","model":"fixture-completions","provider":"fixture"}
+{"task_id":"Fixture/conditional","raw_response":"def add_one(x):\n    return x + 1 if x < 10 else x\n","model":"fixture-completions","provider":"fixture"}
+{"task_id":"Fixture/pre_oracle","raw_response":"def add_one(x):\nreturn x + 1\n","model":"fixture-completions","provider":"fixture"}
+{"task_id":"Fixture/execution","raw_response":"raise RuntimeError('fixture import failure')\n\ndef add_one(x):\n    return x + 1\n","model":"fixture-completions","provider":"fixture"}
+{"task_id":"Fixture/base_reject","raw_response":"def add_one(x):\n    return x\n","model":"fixture-completions","provider":"fixture"}
