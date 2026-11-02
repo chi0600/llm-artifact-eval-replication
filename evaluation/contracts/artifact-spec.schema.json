@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/artifact-spec.schema.json",
+  "title": "Artifact Specification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_type",
+    "required_fields",
+    "gates",
+    "scoring",
+    "aggregation"
+  ],
+  "properties": {
+    "artifact_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "required_fields": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "gates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "stage", "oracle_type", "blocking"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "stage": {
+            "type": "string",
+            "enum": [
+              "validity",
+              "normalization",
+              "consistency",
+              "fidelity",
+              "execution",
+              "quality"
+            ]
+          },
+          "oracle_type": {
+            "type": "string",
+            "enum": ["schema", "rule", "test", "llm_judge", "human_review"]
+          },
+          "blocking": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "scoring": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "weight", "min", "max"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "weight": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "min": {
+            "type": "number"
+          },
+          "max": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "failure_causes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "aggregation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy", "pass_threshold"],
+      "properties": {
+        "policy": {
+          "type": "string",
+          "enum": ["weighted_average", "rule_based"]
+        },
+        "pass_threshold": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "monitoring": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["comparison_keys", "monitored_metrics", "review_triggers"],
+      "properties": {
+        "comparison_keys": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "monitored_metrics": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "review_triggers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}
