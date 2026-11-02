@@ -1,0 +1,121 @@
+{
+  "artifact_type": "python_code_generation_mbpp",
+  "required_fields": [
+    "task_id",
+    "entry_point",
+    "raw_response"
+  ],
+  "gates": [
+    {
+      "id": "response_capture",
+      "stage": "validity",
+      "oracle_type": "schema",
+      "blocking": true,
+      "description": "Records one raw model response for the task"
+    },
+    {
+      "id": "code_extraction",
+      "stage": "normalization",
+      "oracle_type": "rule",
+      "blocking": true,
+      "description": "Extracts candidate Python code from the response"
+    },
+    {
+      "id": "syntax_validation",
+      "stage": "validity",
+      "oracle_type": "schema",
+      "blocking": true,
+      "description": "Parses the extracted candidate as Python"
+    },
+    {
+      "id": "entry_point_validation",
+      "stage": "validity",
+      "oracle_type": "rule",
+      "blocking": true,
+      "description": "Checks that the expected MBPP entry point is defined"
+    },
+    {
+      "id": "execution_probe",
+      "stage": "execution",
+      "oracle_type": "test",
+      "blocking": true,
+      "description": "Executes the candidate far enough to resolve the entry point"
+    },
+    {
+      "id": "base_oracle",
+      "stage": "execution",
+      "oracle_type": "test",
+      "blocking": true,
+      "description": "Runs the original MBPP base tests"
+    },
+    {
+      "id": "extended_oracle",
+      "stage": "execution",
+      "oracle_type": "test",
+      "blocking": false,
+      "description": "Runs the MBPP+ extended tests"
+    },
+    {
+      "id": "decision_classification",
+      "stage": "quality",
+      "oracle_type": "rule",
+      "blocking": false,
+      "description": "Maps gate evidence into Accepted, Conditional, and rejection outcomes"
+    }
+  ],
+  "scoring": [
+    {
+      "id": "base_pass",
+      "weight": 0.5,
+      "min": 0.0,
+      "max": 1.0
+    },
+    {
+      "id": "strict_mbpp_plus_pass",
+      "weight": 0.5,
+      "min": 0.0,
+      "max": 1.0
+    }
+  ],
+  "failure_causes": [
+    "raw_output_missing",
+    "code_extraction_failure",
+    "syntax_error",
+    "missing_expected_function",
+    "harness_setup_failure",
+    "runtime_error",
+    "timeout",
+    "unsafe_execution",
+    "base_oracle_failure",
+    "extended_oracle_failure",
+    "extended_oracle_timeout"
+  ],
+  "aggregation": {
+    "policy": "rule_based",
+    "pass_threshold": 1.0
+  },
+  "monitoring": {
+    "comparison_keys": [
+      "task_id"
+    ],
+    "monitored_metrics": [
+      "base_pass",
+      "strict_mbpp_plus_pass",
+      "decision_category",
+      "failed_stage",
+      "failed_gate",
+      "failure_cause"
+    ],
+    "review_triggers": [
+      "dataset_hash_changed",
+      "prompt_hash_changed",
+      "model_metadata_changed",
+      "base_pass_rate_drop",
+      "strict_pass_rate_drop",
+      "accepted_task_regressed",
+      "new_failed_gates",
+      "new_failure_causes",
+      "strict_failures_increased_base_stable"
+    ]
+  }
+}
