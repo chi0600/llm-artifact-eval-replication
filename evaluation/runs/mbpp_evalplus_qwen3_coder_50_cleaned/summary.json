@@ -1,0 +1,42 @@
+{
+  "artifacts": 50,
+  "base_oracle_reached_count": 50,
+  "base_pass_count": 46,
+  "base_pass_rate": 0.92,
+  "base_pass_rate_all_tasks": 0.92,
+  "base_pass_rate_reached_tasks": 0.92,
+  "dataset": "MbppPlus",
+  "dataset_hash": "ee43ecabebf20deef4bb776a405ac5b1",
+  "dataset_version": "v0.2.0",
+  "failed_gate_counts": {
+    "base_oracle": 4,
+    "extended_oracle": 4
+  },
+  "failure_cause_counts": {
+    "base_oracle_failure": 4,
+    "extended_oracle_failure": 4
+  },
+  "failure_stage_counts": {
+    "base_oracle": 4,
+    "extended_oracle": 4
+  },
+  "model": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+  "outcome_counts": {
+    "Accepted": 42,
+    "Conditional": 4,
+    "Rejected before oracle": 0,
+    "Rejected by base oracle": 4,
+    "Rejected during execution": 0
+  },
+  "outcome_rates": {
+    "Accepted": 0.84,
+    "Conditional": 0.08,
+    "Rejected before oracle": 0.0,
+    "Rejected by base oracle": 0.08,
+    "Rejected during execution": 0.0
+  },
+  "provider": "huggingface_router_openai",
+  "run_id": "mbpp_evalplus_qwen3_coder_50_cleaned",
+  "strict_mbpp_plus_pass_count": 42,
+  "strict_mbpp_plus_pass_rate": 0.84
+}
